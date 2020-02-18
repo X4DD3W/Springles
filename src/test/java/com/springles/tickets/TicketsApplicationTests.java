@@ -1,10 +1,10 @@
-package springles.hackathon;
+package com.springles.tickets;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HackathonApplicationTests {
+class TicketsApplicationTests {
 
   @Test
   void contextLoads() {
