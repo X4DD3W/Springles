@@ -1,0 +1,35 @@
+language: java
+install: true
+
+jdk:
+  - openjdk8
+
+before_cache:
+  - rm -f  ~/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr ~/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - "~/.gradle/caches/"
+    - "~/.gradle/wrapper/"
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - "./gradlew test"
+    - stage: deploy
+      deploy:
+        provider: heroku
+        api-key:
+          secure: "$HEROKU_API_KEY"
+        app: springles-on-heroku
+        on: master
+
+stages:
+  - name: test
+    # require the type to be a PR
+    if: type = pull_request
+  - name: deploy
+    # require the type to be push to master
+    if: type = push AND branch = master
