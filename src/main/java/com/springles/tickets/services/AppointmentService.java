@@ -7,7 +7,17 @@ public interface AppointmentService {
 
   Appointment save(Appointment appointment);
 
-  List<Appointment> findAll();
-
   boolean isThisAppointmentAvailable(Appointment appointment);
+
+  List<Appointment> listAll();
+
+  List<Appointment> listUnpairedAppointments();
+
+  List<Appointment> listPairedAppointments();
+
+  List<Appointment> filteredAppointmentsByName(List<Appointment> appointments, String name);
+
+  List<Appointment> filteredAppointmentsBySpecialty(List<Appointment> appointments,
+      String specialty);
+
 }

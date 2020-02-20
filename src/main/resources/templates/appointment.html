@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>
+        <td th:text="'Appointment ID'">
+        <td th:text="'Patient name'">
+        <td th:text="'Phone number'">
+        <td th:text="'E-mail adress'">
+        <td th:text="'Date of examination'">
+        <td th:text="'Specialist'">
+        <td th:text="'Description'">
+        <td th:text="'Date of reservation'">
+        <td th:text="'Doctor'">
+        </th>
+    </tr>
+    <tr th:each="appointment : ${appointments}" th:style="${appointment.date} ? 'color:red' : 'color:black'">
+        <td></td>
+        <td th:text="${appointment.getId()}">
+        <td th:text="${appointment.getPatientName()}">
+        <td th:text="${appointment.getPhoneNumber()}">
+        <td th:text="${appointment.getEmail()}">
+        <td th:text="${appointment.getDate()}">
+        <td th:text="${appointment.getSpecialist()}">
+        <td th:text="${appointment.getDescription()}">
+        <td th:text="${appointment.getDateOfSubmission()}">
+        <td th:if="${appointment.getDoctor() != null}" th:text="${appointment.getDoctor().getName()}">
+    </tr>
+</body>
+</html>
