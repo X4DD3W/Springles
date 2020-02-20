@@ -10,19 +10,26 @@ public class Appointment {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   private String patientName;
+
   private String phoneNumber;
+
   private String email;
+
   private String specialist;
+
   private String description;
+
   @ManyToOne
   private Doctor doctor;
 
   @Temporal(TemporalType.TIMESTAMP)
-  @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
   private Date date;
+
   @Temporal(TemporalType.TIMESTAMP)
-  @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
   private Date dateOfSubmission;
 
   public Appointment() {

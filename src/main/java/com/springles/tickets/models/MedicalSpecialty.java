@@ -8,13 +8,16 @@ public class MedicalSpecialty {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   private String nameOfSpecialty;
+
   @ManyToOne
   private Doctor doctor;
 
-  public MedicalSpecialty(){}
+  public MedicalSpecialty() {
+  }
 
-  public MedicalSpecialty(String nameOfSpecialty){
+  public MedicalSpecialty(String nameOfSpecialty) {
     this.nameOfSpecialty = nameOfSpecialty;
   }
 

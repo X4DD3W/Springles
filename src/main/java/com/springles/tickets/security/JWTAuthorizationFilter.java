@@ -17,14 +17,15 @@ import java.util.ArrayList;
 import static com.springles.tickets.security.SecurityConstants.*;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+
   public JWTAuthorizationFilter(AuthenticationManager authManager) {
     super(authManager);
   }
 
   @Override
   protected void doFilterInternal(HttpServletRequest req,
-                                  HttpServletResponse res,
-                                  FilterChain chain) throws IOException, ServletException {
+      HttpServletResponse res,
+      FilterChain chain) throws IOException, ServletException {
     String header = req.getHeader(HEADER_STRING);
 
     if (header == null || !header.startsWith(TOKEN_PREFIX)) {
