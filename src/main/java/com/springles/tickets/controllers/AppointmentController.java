@@ -21,7 +21,6 @@ public class AppointmentController {
 
   @PostMapping("/form")
   public String saveAppointment(@ModelAttribute Appointment appointment) {
-    // ha van ilyen szabad időpont, rendelje valakihez
     // ha nincs viszlátka
     if (appointmentService.isThisAppointmentAvailable(appointment)) {
       appointmentService.save(appointment);
