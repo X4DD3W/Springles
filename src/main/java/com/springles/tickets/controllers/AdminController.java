@@ -8,9 +8,7 @@ import com.springles.tickets.services.MedicalSpecialtyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -105,6 +103,20 @@ public class AdminController {
   @GetMapping("/delete")
   public String deleteAppointment(@RequestParam("id") Long id) {
     appointmentService.deleteAppointment(id);
+    return "redirect:/appointments";
+  }
+
+  @GetMapping("/edit")
+  public String editAppointment(@RequestParam("id") Long id, @ModelAttribute("appointment") Appointment appointment, Model model){
+    appointment = appointmentService.findById(id);
+    model.addAttribute("doctors", doctorService.findAll());
+    model.addAttribute("specialties", medicalSpecialtyService.findall());
+    return "editAppointment";
+  }
+
+  @PostMapping("/edit")
+  public String editAppointment(@ModelAttribute("appointment") Appointment appointment, @RequestParam("id") Long id){
+    appointmentService.save(appointment);
     return "redirect:/appointments";
   }
 }

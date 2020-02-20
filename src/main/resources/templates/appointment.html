@@ -10,7 +10,7 @@
 <h2 th:if="${link == '/unpaired-appointments'}" th:text="'Unpaired Appointments'"></h2>
 <h2 th:if="${link == '/appointments'}" th:text="'All Appointments'"></h2>
 
-<div th:if="${link == '/paired-appointments'}">
+<div th:if="${link != '/unpaired-appointments'}">
     <label>Search by name</label>
     <form th:action="@{(${link})}" th:method="get">
         <select name="name">
@@ -61,6 +61,7 @@
         <td th:if="${appointment.getDoctor() != null}" th:text="${appointment.getDoctor().getName()}">
         <td th:if="${appointment.getDoctor() == null}" th:text="'no doctor yet'">
         <td><a th:href="@{'/delete?id='+${appointment.getId()}}"> X </a></td>
+        <td><a th:href="@{'/edit?id='+${appointment.getId()}}"> edit </a></td>
     </tr>
 </table>
 </body>

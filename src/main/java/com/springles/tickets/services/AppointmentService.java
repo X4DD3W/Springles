@@ -22,4 +22,5 @@ public interface AppointmentService {
                                                     String specialty);
 
   void deleteAppointment(Long id);
+  Appointment findById(Long id);
 }

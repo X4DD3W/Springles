@@ -94,4 +94,9 @@ public class AppointmentServiceImpl implements AppointmentService {
   public void deleteAppointment(Long id){
     appointmentRepository.deleteById(id);
   }
+
+  @Override
+  public Appointment findById(Long id){
+    return appointmentRepository.findById(id).orElse(null);
+  }
 }
