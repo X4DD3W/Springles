@@ -26,19 +26,19 @@ public class AppointmentServiceImpl implements AppointmentService {
   }
 
   @Override
-  public List<Appointment> listAll(){
+  public List<Appointment> listAll() {
     List<Appointment> appointments = new ArrayList<>();
-    for (Appointment appointment : appointmentRepository.findAll()){
+    for (Appointment appointment : appointmentRepository.findAll()) {
       appointments.add(appointment);
     }
     return appointments;
   }
 
   @Override
-  public List<Appointment> listUnpairedAppointments(){
+  public List<Appointment> listUnpairedAppointments() {
     List<Appointment> appointments = new ArrayList<>();
-    for (Appointment appointment : appointmentRepository.findAll()){
-      if (appointment.getDoctor() == null){
+    for (Appointment appointment : appointmentRepository.findAll()) {
+      if (appointment.getDoctor() == null) {
         appointments.add(appointment);
       }
     }
@@ -46,10 +46,10 @@ public class AppointmentServiceImpl implements AppointmentService {
   }
 
   @Override
-  public List<Appointment> listPairedAppointments(){
+  public List<Appointment> listPairedAppointments() {
     List<Appointment> appointments = new ArrayList<>();
-    for (Appointment appointment : appointmentRepository.findAll()){
-      if (appointment.getDoctor() != null){
+    for (Appointment appointment : appointmentRepository.findAll()) {
+      if (appointment.getDoctor() != null) {
         appointments.add(appointment);
       }
     }
@@ -57,10 +57,10 @@ public class AppointmentServiceImpl implements AppointmentService {
   }
 
   @Override
-  public List<Appointment> filteredAppointmentsByName(List<Appointment> appointments, String name){
+  public List<Appointment> filteredAppointmentsByName(List<Appointment> appointments, String name) {
     List<Appointment> filteredAppointments = new ArrayList<>();
-    for (Appointment appointment : appointments){
-      if (appointment.getDoctor().getName().equals(name)){
+    for (Appointment appointment : appointments) {
+      if (appointment.getDoctor().getName().equals(name)) {
         filteredAppointments.add(appointment);
       }
     }
@@ -68,10 +68,11 @@ public class AppointmentServiceImpl implements AppointmentService {
   }
 
   @Override
-  public List<Appointment> filteredAppointmentsBySpecialty(List<Appointment> appointments, String specialty){
+  public List<Appointment> filteredAppointmentsBySpecialty(List<Appointment> appointments,
+      String specialty) {
     List<Appointment> filteredAppointments = new ArrayList<>();
-    for (Appointment appointment : appointments){
-      if (appointment.getSpecialist().equals(specialty)){
+    for (Appointment appointment : appointments) {
+      if (appointment.getSpecialist().equals(specialty)) {
         filteredAppointments.add(appointment);
       }
     }

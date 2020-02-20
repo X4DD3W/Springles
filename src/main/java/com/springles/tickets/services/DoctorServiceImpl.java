@@ -14,7 +14,8 @@ public class DoctorServiceImpl implements DoctorService {
   @Autowired
   private DoctorRepository doctorRepository;
 
-  public DoctorServiceImpl(DoctorRepository doctorRepository, AppointmentRepository appointmentRepository) {
+  public DoctorServiceImpl(DoctorRepository doctorRepository,
+      AppointmentRepository appointmentRepository) {
     this.doctorRepository = doctorRepository;
   }
 

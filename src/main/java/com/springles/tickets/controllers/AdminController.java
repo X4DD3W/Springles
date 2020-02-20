@@ -12,7 +12,8 @@ import java.util.List;
 
 @Controller
 public class AdminController {
-  AppointmentService appointmentService;
+
+  private AppointmentService appointmentService;
 
   @Autowired
   public AdminController(AppointmentService appointmentService) {
@@ -20,16 +21,20 @@ public class AdminController {
   }
 
   @GetMapping("/unpaired-assignments")
-  public String listOfUnpairedAssignments(Model model, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "specialist", required = false) String specialty){
+  public String listOfUnpairedAssignments(Model model,
+      @RequestParam(value = "name", required = false) String name,
+      @RequestParam(value = "specialist", required = false) String specialty) {
     List<Appointment> appointments = appointmentService.listUnpairedAppointments();
     List<Appointment> filteredAppointments;
-    if (name != null && specialty != null){
-      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(appointmentService.filteredAppointmentsByName(appointments, name), specialty);
-    }else if (name != null){
+    if (name != null && specialty != null) {
+      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(
+          appointmentService.filteredAppointmentsByName(appointments, name), specialty);
+    } else if (name != null) {
       filteredAppointments = appointmentService.filteredAppointmentsByName(appointments, name);
-    }else if (specialty != null){
-      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(appointments, specialty);
-    }else{
+    } else if (specialty != null) {
+      filteredAppointments = appointmentService
+          .filteredAppointmentsBySpecialty(appointments, specialty);
+    } else {
       filteredAppointments = appointments;
     }
     model.addAttribute("appointments", filteredAppointments);
@@ -37,16 +42,20 @@ public class AdminController {
   }
 
   @GetMapping("/paired-assignments")
-  public String listOfPairedAssignments(Model model, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "specialist", required = false) String specialty){
+  public String listOfPairedAssignments(Model model,
+      @RequestParam(value = "name", required = false) String name,
+      @RequestParam(value = "specialist", required = false) String specialty) {
     List<Appointment> appointments = appointmentService.listPairedAppointments();
     List<Appointment> filteredAppointments;
-    if (name != null && specialty != null){
-      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(appointmentService.filteredAppointmentsByName(appointments, name), specialty);
-    }else if (name != null){
+    if (name != null && specialty != null) {
+      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(
+          appointmentService.filteredAppointmentsByName(appointments, name), specialty);
+    } else if (name != null) {
       filteredAppointments = appointmentService.filteredAppointmentsByName(appointments, name);
-    }else if (specialty != null){
-      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(appointments, specialty);
-    }else{
+    } else if (specialty != null) {
+      filteredAppointments = appointmentService
+          .filteredAppointmentsBySpecialty(appointments, specialty);
+    } else {
       filteredAppointments = appointments;
     }
     model.addAttribute("appointments", filteredAppointments);
