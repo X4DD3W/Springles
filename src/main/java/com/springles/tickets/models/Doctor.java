@@ -14,9 +14,9 @@ public class Doctor {
   private String name;
   private String doctorId;
   private String introduction;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor", fetch = FetchType.EAGER)
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor", fetch = FetchType.LAZY)
   private List<Appointment> listOfAppointments = new ArrayList<>();
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor", fetch = FetchType.EAGER)
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor", fetch = FetchType.LAZY)
   private List<MedicalSpecialty> listOfMedicalSpecialties = new ArrayList<>();
 
   public Doctor(){}

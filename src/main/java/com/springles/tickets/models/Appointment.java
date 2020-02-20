@@ -97,4 +97,16 @@ public class Appointment {
   public void setDateOfSubmission(Date dateOfSubmission) {
     this.dateOfSubmission = dateOfSubmission;
   }
+
+  public Doctor getDoctor() {
+    return doctor;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setDoctor(Doctor doctor) {
+    this.doctor = doctor;
+  }
 }
