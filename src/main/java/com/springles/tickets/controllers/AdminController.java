@@ -15,9 +15,10 @@ import java.util.List;
 
 @Controller
 public class AdminController {
-  AppointmentService appointmentService;
-  DoctorService doctorService;
-  MedicalSpecialtyService medicalSpecialtyService;
+
+  private AppointmentService appointmentService;
+  private DoctorService doctorService;
+  private MedicalSpecialtyService medicalSpecialtyService;
 
   @Autowired
   public AdminController(AppointmentService appointmentService, DoctorService doctorService, MedicalSpecialtyService medicalSpecialtyService) {
@@ -27,22 +28,24 @@ public class AdminController {
   }
 
   @GetMapping("/unpaired-assignments")
-  public String listOfUnpairedAssignments(Model model, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "specialist", required = false) String specialty){
+  public String listOfUnpairedAssignments(Model model,
+                                          @RequestParam(value = "name", required = false) String name,
+                                          @RequestParam(value = "specialist", required = false) String specialty) {
     List<Appointment> appointments = appointmentService.listUnpairedAppointments();
     List<Appointment> filteredAppointments;
     model.addAttribute("doctors", doctorService.findAll());
     model.addAttribute("specialties", medicalSpecialtyService.findall());
     model.addAttribute("link", "/unpaired-assignments");
     model.addAttribute("filterDoctor", false);
-    if ((name != null && name.equals("all")) || (specialty != null && specialty.equals("all"))){
+    if ((name != null && name.equals("all")) || (specialty != null && specialty.equals("all"))) {
       filteredAppointments = appointments;
-    }else if (name != null && specialty != null){
+    } else if (name != null && specialty != null) {
       filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(appointmentService.filteredAppointmentsByName(appointments, name), specialty);
-    }else if (name != null){
+    } else if (name != null) {
       filteredAppointments = appointmentService.filteredAppointmentsByName(appointments, name);
-    }else if (specialty != null){
+    } else if (specialty != null) {
       filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(appointments, specialty);
-    }else {
+    } else {
       filteredAppointments = appointments;
     }
     model.addAttribute("appointments", filteredAppointments);
@@ -50,22 +53,25 @@ public class AdminController {
   }
 
   @GetMapping("/paired-assignments")
-  public String listOfPairedAssignments(Model model, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "specialist", required = false) String specialty){
+  public String listOfPairedAssignments(Model model,
+                                        @RequestParam(value = "name", required = false) String name,
+                                        @RequestParam(value = "specialist", required = false) String specialty) {
     List<Appointment> appointments = appointmentService.listPairedAppointments();
     List<Appointment> filteredAppointments;
     model.addAttribute("doctors", doctorService.findAll());
     model.addAttribute("specialties", medicalSpecialtyService.findall());
     model.addAttribute("link", "/paired-assignments");
     model.addAttribute("filterDoctor", true);
-    if ((name != null && name.equals("all")) || (specialty != null && specialty.equals("all"))){
+    if ((name != null && name.equals("all")) || (specialty != null && specialty.equals("all"))) {
       filteredAppointments = appointments;
-    }else if (name != null && specialty != null){
+    } else if (name != null && specialty != null) {
       filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(appointmentService.filteredAppointmentsByName(appointments, name), specialty);
-    }else if (name != null){
+    } else if (name != null) {
       filteredAppointments = appointmentService.filteredAppointmentsByName(appointments, name);
-    }else if (specialty != null){
-      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(appointments, specialty);
-    }else{
+    } else if (specialty != null) {
+      filteredAppointments = appointmentService
+          .filteredAppointmentsBySpecialty(appointments, specialty);
+    } else {
       filteredAppointments = appointments;
     }
     model.addAttribute("appointments", filteredAppointments);
