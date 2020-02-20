@@ -19,5 +19,4 @@ public interface AppointmentService {
 
   List<Appointment> filteredAppointmentsBySpecialty(List<Appointment> appointments,
       String specialty);
-
 }

@@ -1,16 +1,9 @@
 package com.springles.tickets.controllers;
 
 import com.springles.tickets.models.ApplicationUser;
-import com.springles.tickets.models.Appointment;
 import com.springles.tickets.repositories.ApplicationUserRepository;
-import com.springles.tickets.repositories.AppointmentRepository;
-import com.springles.tickets.services.AppointmentService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -30,5 +23,4 @@ public class UserController {
     user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
     applicationUserRepository.save(user);
   }
-
 }
