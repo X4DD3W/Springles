@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class DoctorServiceImpl implements DoctorService {
 
   @Autowired
-  DoctorRepository doctorRepository;
-  AppointmentRepository appointmentRepository;
+  private DoctorRepository doctorRepository;
+  private AppointmentRepository appointmentRepository;
 
-  public DoctorServiceImpl(DoctorRepository doctorRepository, AppointmentRepository appointmentRepository){
+  public DoctorServiceImpl(DoctorRepository doctorRepository, AppointmentRepository appointmentRepository) {
     this.doctorRepository = doctorRepository;
     this.appointmentRepository = appointmentRepository;
   }

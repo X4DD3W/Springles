@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class DoctorController {
 
-  DoctorService doctorService;
+  private DoctorService doctorService;
 
-  public DoctorController(DoctorService doctorService){
+  public DoctorController(DoctorService doctorService) {
     this.doctorService = doctorService;
   }
 
@@ -23,7 +23,7 @@ public class DoctorController {
   }
 
   @GetMapping("/doctor/{id}")
-  public String showListOfAppointmentsOfSelectedDoctor(@PathVariable Long id, Model model){
+  public String showListOfAppointmentsOfSelectedDoctor(@PathVariable Long id, Model model) {
     model.addAttribute("list_of_appointments", doctorService.getListOfAppointments(id));
     return "doctors_schedule";
   }

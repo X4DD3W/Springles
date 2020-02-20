@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AppointmentRepository extends CrudRepository<Appointment, Long> {
 
-  @Query(value = "select * from appointmnet where doctor_id = id order by date ", nativeQuery = true)
+  @Query(value = "select * from appointment where doctor_id = id order by date ", nativeQuery = true)
   List<String> getListOfAppointments(Long id);
 }
