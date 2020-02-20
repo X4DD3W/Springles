@@ -19,9 +19,10 @@ public class Appointment {
   private Doctor doctor;
 
   @Temporal(TemporalType.TIMESTAMP)
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd HH:mm")
+  @JsonFormat(pattern="yyyy-MM-dd HH:mm")
   private Date date;
   @Temporal(TemporalType.TIMESTAMP)
+  @JsonFormat(pattern="yyyy-MM-dd HH:mm")
   private Date dateOfSubmission;
 
   public Appointment() {
