@@ -10,9 +10,4 @@ public class MainController {
   public String welcomePageTest() {
     return "welcome";
   }
-
-  @GetMapping("/index")
-  public String mainPage() {
-    return "index";
-  }
 }
