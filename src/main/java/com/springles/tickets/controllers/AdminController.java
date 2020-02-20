@@ -3,6 +3,7 @@ package com.springles.tickets.controllers;
 import com.springles.tickets.models.Appointment;
 import com.springles.tickets.models.Doctor;
 import com.springles.tickets.services.AppointmentService;
+import java.util.List;
 import com.springles.tickets.services.DoctorService;
 import com.springles.tickets.services.MedicalSpecialtyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Controller
 public class AdminController {
@@ -27,7 +26,7 @@ public class AdminController {
     this.medicalSpecialtyService = medicalSpecialtyService;
   }
 
-  @GetMapping("/unpaired-assignments")
+  @GetMapping("/unpaired-appointments")
   public String listOfUnpairedAssignments(Model model,
                                           @RequestParam(value = "name", required = false) String name,
                                           @RequestParam(value = "specialist", required = false) String specialty) {
@@ -35,7 +34,7 @@ public class AdminController {
     List<Appointment> filteredAppointments;
     model.addAttribute("doctors", doctorService.findAll());
     model.addAttribute("specialties", medicalSpecialtyService.findall());
-    model.addAttribute("link", "/unpaired-assignments");
+    model.addAttribute("link", "/unpaired-appointments");
     model.addAttribute("filterDoctor", false);
     if ((name != null && name.equals("all")) || (specialty != null && specialty.equals("all"))) {
       filteredAppointments = appointments;
@@ -45,6 +44,7 @@ public class AdminController {
       filteredAppointments = appointmentService.filteredAppointmentsByName(appointments, name);
     } else if (specialty != null) {
       filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(appointments, specialty);
+
     } else {
       filteredAppointments = appointments;
     }
@@ -52,7 +52,7 @@ public class AdminController {
     return "appointment";
   }
 
-  @GetMapping("/paired-assignments")
+  @GetMapping("/paired-appointments")
   public String listOfPairedAssignments(Model model,
                                         @RequestParam(value = "name", required = false) String name,
                                         @RequestParam(value = "specialist", required = false) String specialty) {
@@ -60,7 +60,7 @@ public class AdminController {
     List<Appointment> filteredAppointments;
     model.addAttribute("doctors", doctorService.findAll());
     model.addAttribute("specialties", medicalSpecialtyService.findall());
-    model.addAttribute("link", "/paired-assignments");
+    model.addAttribute("link", "/paired-appointments");
     model.addAttribute("filterDoctor", true);
     if ((name != null && name.equals("all")) || (specialty != null && specialty.equals("all"))) {
       filteredAppointments = appointments;
@@ -70,7 +70,7 @@ public class AdminController {
       filteredAppointments = appointmentService.filteredAppointmentsByName(appointments, name);
     } else if (specialty != null) {
       filteredAppointments = appointmentService
-          .filteredAppointmentsBySpecialty(appointments, specialty);
+              .filteredAppointmentsBySpecialty(appointments, specialty);
     } else {
       filteredAppointments = appointments;
     }
