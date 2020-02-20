@@ -22,6 +22,7 @@ import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 import static com.springles.tickets.security.SecurityConstants.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
   private AuthenticationManager authenticationManager;
 
   public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
@@ -30,7 +31,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
   @Override
   public Authentication attemptAuthentication(HttpServletRequest req,
-                                              HttpServletResponse res) throws AuthenticationException {
+      HttpServletResponse res) throws AuthenticationException {
     try {
       ApplicationUser creds = new ObjectMapper()
           .readValue(req.getInputStream(), ApplicationUser.class);
@@ -48,9 +49,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
   @Override
   protected void successfulAuthentication(HttpServletRequest req,
-                                          HttpServletResponse res,
-                                          FilterChain chain,
-                                          Authentication auth) throws IOException, ServletException {
+      HttpServletResponse res,
+      FilterChain chain,
+      Authentication auth) throws IOException, ServletException {
 
     String token = JWT.create()
         .withSubject(((User) auth.getPrincipal()).getUsername())

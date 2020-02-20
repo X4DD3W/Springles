@@ -11,17 +11,23 @@ public class Doctor {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   private String name;
+
   private String doctorId;
+
   private String introduction;
+
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor", fetch = FetchType.LAZY)
   private List<Appointment> listOfAppointments = new ArrayList<>();
+
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor", fetch = FetchType.LAZY)
   private List<MedicalSpecialty> listOfMedicalSpecialties = new ArrayList<>();
 
-  public Doctor(){}
+  public Doctor() {
+  }
 
-  public Doctor(String name, String introduction){
+  public Doctor(String name, String introduction) {
     this.name = name;
     this.introduction = introduction;
     this.doctorId = new IdUtil().generateDoctorId(20);
