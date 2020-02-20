@@ -60,11 +60,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     if (!appointments.isEmpty()) {
       for (int i = 0; i < appointments.size(); i++) {
         if (appointments.get(i).getDate() == appointment.getDate()) {
-          return true;
+          return false;
         }
       }
     }
-    return false;
+    return true;
   }
 
   @Override

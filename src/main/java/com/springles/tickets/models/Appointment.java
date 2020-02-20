@@ -1,8 +1,10 @@
 package com.springles.tickets.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.*;
+import sun.util.calendar.BaseCalendar;
 
 @Entity
 public class Appointment {
@@ -24,25 +26,19 @@ public class Appointment {
   @ManyToOne
   private Doctor doctor;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-  private Date date;
+  private String date;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
   private Date dateOfSubmission;
 
   public Appointment() {
   }
 
-  public Appointment(String patientName, String phoneNumber, String email, String specialist,
-      String description, Date date, Date dateOfSubmission) {
+  public Appointment(String patientName, String phoneNumber, String email, String specialist) {
     this.patientName = patientName;
     this.phoneNumber = phoneNumber;
     this.email = email;
     this.specialist = specialist;
     this.description = description;
-    this.date = date;
     this.dateOfSubmission = new Date();
   }
 
@@ -90,11 +86,11 @@ public class Appointment {
     this.description = description;
   }
 
-  public Date getDate() {
+  public String getDate() {
     return date;
   }
 
-  public void setDate(Date date) {
+  public void setDate(String date) {
     this.date = date;
   }
 
@@ -116,5 +112,12 @@ public class Appointment {
 
   public void setDoctor(Doctor doctor) {
     this.doctor = doctor;
+  }
+
+  private String formatDate() {
+    String stringDateFormat = "yyyy-MM-dd/hh:mm";
+    DateFormat dateFormat = new SimpleDateFormat(stringDateFormat);
+    String formattedDate = dateFormat.format(new Date());
+    return formattedDate;
   }
 }
