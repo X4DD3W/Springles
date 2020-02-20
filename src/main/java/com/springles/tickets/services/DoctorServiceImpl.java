@@ -2,6 +2,7 @@ package com.springles.tickets.services;
 
 import com.springles.tickets.models.Appointment;
 import com.springles.tickets.models.Doctor;
+import com.springles.tickets.repositories.AppointmentRepository;
 import com.springles.tickets.repositories.DoctorRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ public class DoctorServiceImpl implements DoctorService {
 
   @Autowired
   DoctorRepository doctorRepository;
+  AppointmentRepository appointmentRepository;
 
-  public DoctorServiceImpl(DoctorRepository doctorRepository){
+  public DoctorServiceImpl(DoctorRepository doctorRepository, AppointmentRepository appointmentRepository){
     this.doctorRepository = doctorRepository;
+    this.appointmentRepository = appointmentRepository;
   }
 
   @Override
@@ -23,9 +26,21 @@ public class DoctorServiceImpl implements DoctorService {
   }
 
   @Override
-  public List<Appointment> getListOfAppointments(String name) {
-    Doctor searchedDoctor = doctorRepository.findByName(name);
+  public List<Appointment> getListOfAppointments(Long id) {
+    Doctor searchedDoctor = doctorRepository.findById(id).orElse(null);
     return searchedDoctor.getListOfAppointments();
+  }
+
+  @Override
+  public Doctor findById(Long id) {
+    Doctor doctor = doctorRepository.findById(id).orElse(null);
+    return doctor;
+  }
+
+  @Override
+  public List<Doctor> findAll() {
+    List<Doctor> listOfDoctors = (List<Doctor>) doctorRepository.findAll();
+    return listOfDoctors;
   }
 
 

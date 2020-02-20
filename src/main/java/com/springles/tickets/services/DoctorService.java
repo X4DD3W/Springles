@@ -8,5 +8,9 @@ public interface DoctorService {
 
   void save(Doctor doctor);
 
-  List<Appointment> getListOfAppointments(String name);
+  List<Appointment> getListOfAppointments(Long id);
+
+  Doctor findById(Long id);
+
+  List<Doctor> findAll();
 }
