@@ -43,4 +43,10 @@ public class DoctorServiceImpl implements DoctorService {
     List<Doctor> listOfDoctors = (List<Doctor>) doctorRepository.findAll();
     return listOfDoctors;
   }
+
+  @Override
+  public void deleteDoctor(Long id) {
+    Doctor doctorToBeDeleted = doctorRepository.findById(id).orElse(null);
+    doctorRepository.delete(doctorToBeDeleted);
+  }
 }
