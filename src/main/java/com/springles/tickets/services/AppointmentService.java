@@ -1,13 +1,13 @@
 package com.springles.tickets.services;
 
 import com.springles.tickets.models.Appointment;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public interface AppointmentService {
 
   Appointment save(Appointment appointment);
+
+  boolean isThisAppointmentAvailable(Appointment appointment);
 
   List<Appointment> listAll();
 
