@@ -19,6 +19,29 @@
         <td th:text="'Doctor'">
         </th>
     </tr>
+
+    <div th:if="${filterDoctor}">
+    <label>Search by name</label>
+    <form th:action="@{(${link})}" th:method="get">
+    <select name="name" th:if="${filterDoctor}">
+        <option th:text="'*all*'" th:value="'all'"></option>
+        <option th:each="doctor : ${doctors}" th:text="${doctor.name}" th:value="${doctor.getName()}"> </option>
+    </select>
+        <button type="submit">submit</button>
+    </form>
+    </div>
+    
+    <div>
+    <label>Search by specialty</label>
+    <form th:action="@{(${link})}" th:method="get">
+        <select name="specialist">
+            <option th:text="'*all*'" th:value="'all'"></option>
+            <option th:each="specialty : ${specialties}" th:text="${specialty.getNameOfSpecialty()}" th:value="${specialty.getNameOfSpecialty()}"> </option>
+        </select>
+        <button type="submit">submit</button>
+    </form>
+    </div>
+
     <tr th:each="appointment : ${appointments}" th:style="${appointment.date} ? 'color:red' : 'color:black'">
         <td></td>
         <td th:text="${appointment.getId()}">
