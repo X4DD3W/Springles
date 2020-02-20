@@ -100,4 +100,5 @@ public class Appointment {
   public void setDateOfSubmission(Date dateOfSubmission) {
     this.dateOfSubmission = dateOfSubmission;
   }
+  
 }
