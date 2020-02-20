@@ -1,4 +1,5 @@
 package com.springles.tickets.models;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ public class Appointment {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  private String patientName;
   private String phoneNumber;
   private String email;
   private String specialist;
@@ -28,7 +30,9 @@ public class Appointment {
   public Appointment() {
   }
 
-  public Appointment(String phoneNumber, String email, String specialist, String description, Date date, Date dateOfSubmission) {
+  public Appointment(String patientName, String phoneNumber, String email, String specialist,
+      String description, Date date, Date dateOfSubmission) {
+    this.patientName = patientName;
     this.phoneNumber = phoneNumber;
     this.email = email;
     this.specialist = specialist;
@@ -39,6 +43,14 @@ public class Appointment {
 
   public Long getId() {
     return id;
+  }
+
+  public String getPatientName() {
+    return patientName;
+  }
+
+  public void setPatientName(String patientName) {
+    this.patientName = patientName;
   }
 
   public String getPhoneNumber() {
