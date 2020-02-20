@@ -41,6 +41,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   }
 
   @Override
+  public void configure(org.springframework.security.config.annotation.web.builders.WebSecurity web) throws Exception {
+    web
+        .ignoring()
+        .antMatchers("/resources/**", "/static/**","/webjars/**");
+  }
+
+  @Override
   public void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
   }
