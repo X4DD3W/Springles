@@ -1,5 +1,8 @@
 package com.springles.tickets.utils;
 
+import com.springles.tickets.models.MedicalSpecialty;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.stereotype.Component;
@@ -22,5 +25,14 @@ public class IdUtil {
     }
 
     return new String(returnValue);
+  }
+
+  public List<MedicalSpecialty> createActualSpecialties() {
+    String[] specialtiesToList = new String[]{"fogorvos", "sebész", "urológus", "fazekas", "pszichiáter"};
+    List<MedicalSpecialty> result = new ArrayList<>();
+    for (String s : specialtiesToList) {
+      result.add(new MedicalSpecialty(s));
+    }
+    return result;
   }
 }
