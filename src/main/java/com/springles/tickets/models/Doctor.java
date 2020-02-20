@@ -1,5 +1,6 @@
 package com.springles.tickets.models;
 
+import com.springles.tickets.utils.IdUtil;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Doctor {
   public Doctor(String name, String introduction){
     this.name = name;
     this.introduction = introduction;
+    this.doctorId = new IdUtil().generateDoctorId(20);
   }
 
   public Long getId() {
