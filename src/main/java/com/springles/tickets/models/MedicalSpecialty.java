@@ -1,9 +1,6 @@
 package com.springles.tickets.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class MedicalSpecialty {
@@ -12,6 +9,8 @@ public class MedicalSpecialty {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String nameOfSpecialty;
+  @ManyToOne
+  private Doctor doctor;
 
   public MedicalSpecialty(){}
 
@@ -27,7 +26,15 @@ public class MedicalSpecialty {
     return nameOfSpecialty;
   }
 
+  public Doctor getDoctor() {
+    return doctor;
+  }
+
   public void setNameOfSpecialty(String nameOfSpecialty) {
     this.nameOfSpecialty = nameOfSpecialty;
+  }
+
+  public void setDoctor(Doctor doctor) {
+    this.doctor = doctor;
   }
 }

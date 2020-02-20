@@ -2,12 +2,7 @@ package com.springles.tickets.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 public class Appointment {
@@ -20,6 +15,8 @@ public class Appointment {
   private String email;
   private String specialist;
   private String description;
+  @ManyToOne
+  private Doctor doctor;
 
   @Temporal(TemporalType.TIMESTAMP)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd HH:mm")
@@ -100,5 +97,16 @@ public class Appointment {
   public void setDateOfSubmission(Date dateOfSubmission) {
     this.dateOfSubmission = dateOfSubmission;
   }
-  
+
+  public Doctor getDoctor() {
+    return doctor;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setDoctor(Doctor doctor) {
+    this.doctor = doctor;
+  }
 }
