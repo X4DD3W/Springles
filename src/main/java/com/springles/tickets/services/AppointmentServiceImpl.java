@@ -59,13 +59,8 @@ public class AppointmentServiceImpl implements AppointmentService {
   public boolean isThisAppointmentAvailable(Appointment appointment) {
     List<Appointment> appointments = appointmentRepository.findAll();
     if (!appointments.isEmpty()) {
-<<<<<<< HEAD
-      for (int i = 0; i < appointments.size(); i++) {
-        if (appointments.get(i).getDate() == appointment.getDate()) {
-=======
       for (Appointment value : appointments) {
         if (value.getDate().equals(appointment.getDate())) {
->>>>>>> master
           return false;
         }
       }
