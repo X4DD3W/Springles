@@ -5,7 +5,6 @@ import com.springles.tickets.models.Doctor;
 import com.springles.tickets.models.MedicalSpecialty;
 import com.springles.tickets.repositories.AppointmentRepository;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -16,6 +16,7 @@
 <input style=" font-size: 22px; font-family: Calibri" type="text" th:field="*{name}" required oninvalid="this.setCustomValidity('Please add a name')" placeholder="name">
 <input style=" font-size: 22px; font-family: Calibri" type="text" th:field="*{introduction}" required oninvalid="this.setCustomValidity('Please add introduction')" placeholder="short introduction">
 <button class="btn btn-warning" type="submit">save doctor</button>
+    <a th:href="@{/docs}">Cancel</a>
 </form>
 
 </body>

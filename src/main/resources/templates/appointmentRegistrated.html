@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <style>
   body {
     background-image: url('/images/spikes.webp');
@@ -11,6 +11,8 @@
   <title>Szuper</title>
 </head>
 <body>
-<h1>SIKER!</h1>
+<h1>We succesfully saved your appointment!</h1>
+<a th:href="@{/new-appointment}">Add new appointment</a>
+
 </body>
 </html>
