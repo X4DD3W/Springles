@@ -33,7 +33,7 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Make an Appointment</h2>
-                    <form th:action="@{/index}" th:method="post" th:object="${newAppointment}">
+                    <form th:action="@{/new-appointment}" th:method="post" th:object="${newAppointment}">
 
                         <div class="input-group">
                             <input th:field="*{patientName}" required class="input--style-2" type="text" placeholder="Name" name="name">
