@@ -123,7 +123,7 @@ public class AdminController {
   public String editAppointment(@ModelAttribute("appointment") Appointment appointment, @RequestParam("id") Long id, Model model){
     if (!appointmentService.isDoctorHasTheSpecialty(appointment.getSpecialist(), appointment.getDoctor())){
       return "redirect:/edit?id=" + appointment.getId() + "&error=true";
-    }else {
+    }else{
       appointmentService.save(appointment);
       return "redirect:/appointments";
     }

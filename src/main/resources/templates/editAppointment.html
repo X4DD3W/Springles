@@ -13,7 +13,7 @@
     <input type="email" th:field="*{email}" required oninvalid="this.setCustomValidity('Please add the e-mail address')">
     <input type="text" th:field="*{date}" required oninvalid="this.setCustomValidity('Please add the examination date')">
     <select th:field="*{specialist}" required name="class">
-        <option th:each="specialty : ${specialties}" th:text="${specialty.getNameOfSpecialty()}" th:value="${specialty.id}"></option>
+        <option th:each="specialty : ${specialties}" th:text="${specialty.getNameOfSpecialty()}" th:value="${specialty.nameOfSpecialty}"></option>
     </select>
     <input type="text" th:field="*{description}" required oninvalid="this.setCustomValidity('Please add the required specialist')">
     <select th:field="*{doctor}" required name="class">
