@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    body {
+        background-image: url('/images/spikes.webp');
+        background-size: 300px;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Add new doctor!</title>
+</head>
+<body>
+<form th:action="@{/saveNewDoctor}" th:method="post" th:object="${doctor}" style="margin: 20px">
+<input style=" font-size: 22px; font-family: Calibri" type="text" th:field="*{name}" required oninvalid="this.setCustomValidity('Please add a name')" placeholder="name">
+<input style=" font-size: 22px; font-family: Calibri" type="text" th:field="*{introduction}" required oninvalid="this.setCustomValidity('Please add introduction')" placeholder="short introduction">
+<button class="btn btn-warning" type="submit">save doctor</button>
+</form>
+
+</body>
+</html>
