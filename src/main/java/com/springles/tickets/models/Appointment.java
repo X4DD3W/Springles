@@ -1,10 +1,7 @@
 package com.springles.tickets.models;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.*;
-import sun.util.calendar.BaseCalendar;
 
 @Entity
 public class Appointment {
@@ -28,12 +25,15 @@ public class Appointment {
 
   private String date;
 
+
+  @Temporal(TemporalType.TIMESTAMP)
   private Date dateOfSubmission;
 
   public Appointment() {
   }
 
-  public Appointment(String patientName, String phoneNumber, String email, String specialist) {
+  public Appointment(String patientName, String phoneNumber, String email, String specialist,
+      String description, String date) {
     this.patientName = patientName;
     this.phoneNumber = phoneNumber;
     this.email = email;
@@ -112,12 +112,5 @@ public class Appointment {
 
   public void setDoctor(Doctor doctor) {
     this.doctor = doctor;
-  }
-
-  private String formatDate() {
-    String stringDateFormat = "yyyy-MM-dd/hh:mm";
-    DateFormat dateFormat = new SimpleDateFormat(stringDateFormat);
-    String formattedDate = dateFormat.format(new Date());
-    return formattedDate;
   }
 }
