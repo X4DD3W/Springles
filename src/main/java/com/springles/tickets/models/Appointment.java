@@ -20,8 +20,6 @@ public class Appointment {
   private String description;
 
   @ManyToOne
-  @JoinColumn(name = "doctor_id", referencedColumnName = "id")
-  // ez lehet, hogy nem kell
   private Doctor doctor;
 
   private String date;
