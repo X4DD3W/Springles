@@ -13,7 +13,7 @@ public class UserRestController {
   private BCryptPasswordEncoder bCryptPasswordEncoder;
 
   public UserRestController(ApplicationUserRepository applicationUserRepository,
-                            BCryptPasswordEncoder bCryptPasswordEncoder) {
+      BCryptPasswordEncoder bCryptPasswordEncoder) {
     this.applicationUserRepository = applicationUserRepository;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
@@ -24,4 +24,3 @@ public class UserRestController {
     applicationUserRepository.save(user);
   }
 }
-

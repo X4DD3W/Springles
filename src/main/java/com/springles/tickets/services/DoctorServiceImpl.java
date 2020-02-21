@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class DoctorServiceImpl implements DoctorService {
 
-
   private DoctorRepository doctorRepository;
   private AppointmentRepository appointmentrepository;
 
@@ -34,14 +33,12 @@ public class DoctorServiceImpl implements DoctorService {
 
   @Override
   public Doctor findById(Long id) {
-    Doctor doctor = doctorRepository.findById(id).orElse(null);
-    return doctor;
+    return doctorRepository.findById(id).orElse(null);
   }
 
   @Override
   public List<Doctor> findAll() {
-    List<Doctor> listOfDoctors = (List<Doctor>) doctorRepository.findAll();
-    return listOfDoctors;
+    return (List<Doctor>) doctorRepository.findAll();
   }
 
   @Override
