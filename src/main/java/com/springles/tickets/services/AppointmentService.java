@@ -26,5 +26,5 @@ public interface AppointmentService {
 
   Appointment findById(Long id);
 
-  Boolean isDoctorHasTheSpecialty(String specialty, Doctor doctor);
+  boolean isDoctorHasTheSpecialty(String specialty, Doctor doctor);
 }

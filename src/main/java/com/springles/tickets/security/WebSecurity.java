@@ -29,7 +29,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     http.cors().and().csrf().disable().authorizeRequests()
         .antMatchers(HttpMethod.GET, "/register/").permitAll()
         .antMatchers(HttpMethod.POST, "/register/").permitAll()
-        .antMatchers(HttpMethod.POST, "/users/sign-up").permitAll()
+        .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
         .antMatchers(HttpMethod.GET, "/new-appointment").permitAll()
         .antMatchers(HttpMethod.POST, "/new-appointment").permitAll()
         .anyRequest().authenticated()
@@ -38,7 +38,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         .and()
         .addFilter(new JWTAuthenticationFilter(authenticationManager()))
         .addFilter(new JWTAuthorizationFilter(authenticationManager()))
-        // this disables session creation on Spring Security
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }
 

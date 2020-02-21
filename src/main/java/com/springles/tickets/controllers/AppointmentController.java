@@ -1,10 +1,8 @@
 package com.springles.tickets.controllers;
 
 import com.springles.tickets.models.Appointment;
-import com.springles.tickets.models.MedicalSpecialty;
 import com.springles.tickets.services.AppointmentService;
 import com.springles.tickets.utils.IdUtil;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,29 +21,28 @@ public class AppointmentController {
   }
 
   @GetMapping("/new-appointment")
-  public String mainPage(@ModelAttribute(name = "newAppointment") Appointment appointment,
+  public String addNewAppointment(@ModelAttribute(name = "newAppointment") Appointment appointment,
       Model model) {
-    List<MedicalSpecialty> specialties = new IdUtil().createActualSpecialties();
-    model.addAttribute("specialties", specialties);
+    model.addAttribute("specialties", new IdUtil().createActualSpecialties());
     return "index";
   }
 
   @PostMapping("/new-appointment")
   public String saveAppointment(@ModelAttribute Appointment appointment) {
-    // kiszedem az összes fogorvost
-    // megnézem a ticketjeiket, és ha mindnek van olyan ticketje, akkor rácseszett és
-    // visszairányítom az indexre, hogy fusson neki mégegyszer
-
+    // 1. Kiszedem az összes pl. "fogorvost" és összevetem a userinputot az elérhető orvosokkal,
+    // 2. és ha egyiket sem lehet hozzárendelni a kért időpont-specialist kombinációhoz:
+    // 3. visszairányítom az indexre, hogy fusson neki mégegyszer. Béta:
     if (appointmentService.isThisAppointmentAvailable(appointment)) {
       appointmentService.save(appointment);
       return "redirect:/success";
     } else {
+      // üresen érkeznek a fieldek, @RequestParammal menjenek majd a korábban megadott adatok!
       return "redirect:/new-appointment";
     }
   }
 
   @GetMapping("/success")
-  public String registerAppointmentSuccess() {
-    return "appointmentRegistrated";
+  public String successfulSavingOfAppointment() {
+    return "summa";
   }
 }
