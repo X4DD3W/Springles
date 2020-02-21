@@ -32,9 +32,7 @@ public class AppointmentController {
   }
 
   @PostMapping("/new-appointment")
-  public String saveAppointment(@ModelAttribute Appointment appointment) throws ParseException {
-    appointment.setDateOfSubmission(new Date());
-/*
+  public String saveAppointment(@ModelAttribute Appointment appointment) throws ParseException {/*
     appointment.setDate(new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").format(appointment.getDate()));
 */
     // kiszedem az összes fogorvost

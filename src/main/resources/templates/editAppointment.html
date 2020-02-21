@@ -15,7 +15,6 @@
     <select th:field="*{specialist}" required name="class">
         <option th:each="specialty : ${specialties}" th:text="${specialty.getNameOfSpecialty()}" th:value="${specialty.nameOfSpecialty}"></option>
     </select>
-    <input type="date" th:field="*{dateOfSubmission}" readonly required>
     <input type="text" th:field="*{description}" required oninvalid="this.setCustomValidity('Please add the required specialist')">
     <select th:field="*{doctor}" required name="class">
         <option th:each="doc : ${doctors}" th:text="${doc.name}" th:value="${doc.id}"></option>
