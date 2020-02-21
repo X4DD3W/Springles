@@ -12,6 +12,8 @@ public class MedicalSpecialty {
   private String nameOfSpecialty;
 
   @ManyToOne
+  @JoinColumn(name = "doctor_id", referencedColumnName = "id")
+  // ez lehet, hogy nem kell
   private Doctor doctor;
 
   public MedicalSpecialty() {
