@@ -30,6 +30,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.GET,"/register/" ).permitAll()
             .antMatchers(HttpMethod.POST,"/register/").permitAll()
             .antMatchers(HttpMethod.POST, "/users/sign-up").permitAll()
+            .antMatchers(HttpMethod.GET,"/index" ).permitAll()
+            .antMatchers(HttpMethod.POST,"/index").permitAll()
         .anyRequest().authenticated()
         .and()
         .httpBasic()
