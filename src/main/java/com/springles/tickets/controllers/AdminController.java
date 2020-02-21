@@ -39,9 +39,6 @@ public class AdminController {
     model.addAttribute("link", "/appointments");
     if ((name != null && name.equals("all")) || (specialty != null && specialty.equals("all"))) {
       filteredAppointments = appointments;
-    } else if (name != null && specialty != null) {
-      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(
-          appointmentService.filteredAppointmentsByName(appointments, name), specialty);
     } else if (name != null) {
       filteredAppointments = appointmentService.filteredAppointmentsByName(appointments, name);
     } else if (specialty != null) {
@@ -92,9 +89,6 @@ public class AdminController {
     model.addAttribute("link", "/paired-appointments");
     if ((name != null && name.equals("all")) || (specialty != null && specialty.equals("all"))) {
       filteredAppointments = appointments;
-    } else if (name != null && specialty != null) {
-      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(
-          appointmentService.filteredAppointmentsByName(appointments, name), specialty);
     } else if (name != null) {
       filteredAppointments = appointmentService.filteredAppointmentsByName(appointments, name);
     } else if (specialty != null) {
