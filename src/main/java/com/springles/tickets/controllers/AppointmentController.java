@@ -38,7 +38,6 @@ public class AppointmentController {
 /*
     appointment.setDate(new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").format(appointment.getDate()));
 */
-
     // kiszedem az összes fogorvost
     // megnézem a ticketjeiket, és ha mindnek van olyan ticketje, akkor rácseszett és
     // visszairányítom az indexre, hogy fusson neki mégegyszer
