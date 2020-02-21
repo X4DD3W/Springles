@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    body {
+        background-image: url('/images/spikes.webp');
+        background-size: 300px;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
-    <title>Add new Appointment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Appointments</title>
 </head>
 <body>
-<h3><a th:href="@{/appointments}" th:text="'All appointments'"></a> </h3>
-<h3><a th:href="@{/unpaired-appointments}" th:text="'Unpaired appointments'"></a> </h3>
-<h3><a th:href="@{/paired-appointments}" th:text="'Paired appointments'"></a> </h3>
-<h3><a th:href="@{/docs}" th:text="'Doctors'"></a> </h3>
+<ul>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/appointments}" class="badge badge-info" style="margin-left: 20px; margin-top: 20px "
+               th:text="'All appointments'"></a></h3>
+    </li>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/unpaired-appointments}" class="badge badge-info" style="margin-left: 20px; margin-top: 20px"
+               th:text="'Unpaired appointments'"></a></h3>
+    </li>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/paired-appointments}" class="badge badge-info" style="margin-left: 20px; margin-top: 20px"
+               th:text="'Paired appointments'"></a></h3>
+    </li>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/docs}" class="badge badge-danger" style="margin-left: 20px; margin-top: 20px"
+               th:text="'Doctors'"></a></h3>
+    </li>
+</ul>
 
-<h2 th:if="${link == '/paired-appointments'}" th:text="'Paired Appointments'"></h2>
-<h2 th:if="${link == '/unpaired-appointments'}" th:text="'Unpaired Appointments'"></h2>
-<h2 th:if="${link == '/appointments'}" th:text="'All Appointments'"></h2>
+<h2 th:if="${link == '/paired-appointments'}" th:text="'Paired Appointments'" style="color: darkcyan; font-style: italic; font-weight: bold; font-family: 'Trebuchet MS'; font-size: 40px"></h2>
+<h2 th:if="${link == '/unpaired-appointments'}" th:text="'Unpaired Appointments'" style="color: darkcyan; font-style: italic; font-weight: bold; font-family: 'Trebuchet MS'; font-size: 40px"></h2>
+<h2 th:if="${link == '/appointments'}" th:text="'All Appointments'" style="color: darkcyan; font-style: italic; font-weight: bold; font-family: 'Trebuchet MS'; font-size: 40px"></h2>
 
 <div th:if="${link != '/unpaired-appointments'}">
     <label>Search by name</label>
     <form th:action="@{(${link})}" th:method="get">
-        <select name="name">
+        <select name="name" class="custom-select my-1 mr-sm-2" style="width: 100px">
             <option th:text="'*all*'" th:value="'all'"></option>
             <option th:each="doctor : ${doctors}" th:text="${doctor.name}" th:value="${doctor.getName()}"></option>
         </select>
@@ -36,34 +58,47 @@
     </form>
 </div>
 
-<table>
+<table class="table table-striped">
     <tr>
         <th>
-        <td th:text="'Appointment ID'">
-        <td th:text="'Patient name'">
-        <td th:text="'Phone number'">
-        <td th:text="'E-mail adress'">
-        <td th:text="'Date of examination'">
-        <td th:text="'Specialist'">
-        <td th:text="'Description'">
-        <td th:text="'Doctor'">
-        <td th:text="'Delete'">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-info" th:text="'Appointment ID'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-info" th:text="'Patient name'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-info" th:text="'Phone number'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-info" th:text="'E-mail adress'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-info" th:text="'Date of examination'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-info" th:text="'Specialist'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-info" th:text="'Description'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-info" th:text="'Doctor'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-info" th:text="'Delete'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-info" th:text="'Edit'">
+        <td></td>
+        <td></td>
+        <td></td>
         </th>
     </tr>
 
     <tr th:each="appointment : ${appointments}" th:style="${appointment.date} ? 'color:red' : 'color:black'">
         <td></td>
-        <td th:text="${appointment.getId()}">
-        <td th:text="${appointment.getPatientName()}">
-        <td th:text="${appointment.getPhoneNumber()}">
-        <td th:text="${appointment.getEmail()}">
-        <td th:text="${appointment.getDate()}">
-        <td th:text="${appointment.getSpecialist()}">
-        <td th:text="${appointment.getDescription()}">
-        <td th:if="${appointment.getDoctor() != null}" th:text="${appointment.getDoctor().getName()}">
-        <td th:if="${appointment.getDoctor() == null}" th:text="'no doctor yet'">
-        <td><a th:href="@{'/delete?id='+${appointment.getId()}}"> X </a></td>
-        <td><a th:href="@{'/edit?id='+${appointment.getId()}}"> edit </a></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="font-size: 20px; font-weight: bold; color: lightseagreen" th:text="${appointment.getId()}">
+        <td style="font-size: 20px; color: #333333" th:text="${appointment.getPatientName()}">
+        <td style="font-size: 20px; color: #333333" th:text="${appointment.getPhoneNumber()}">
+        <td style="font-size: 20px; color: #333333" th:text="${appointment.getEmail()}">
+        <td style="font-size: 20px; color: #333333" th:text="${appointment.getDate()}">
+        <td style="font-size: 20px; color: #333333" th:text="${appointment.getSpecialist()}">
+        <td style="font-size: 20px; color: #333333" th:text="${appointment.getDescription()}">
+        <td style="font-size: 20px; color: #333333" th:if="${appointment.getDoctor() != null}" th:text="${appointment.getDoctor().getName()}">
+        <td style="font-size: 20px; color: #333333" th:if="${appointment.getDoctor() == null}" th:text="'no doctor yet'">
+        <td style="font-size: 20px"><a style="color: lightseagreen" th:href="@{'/delete?id='+${appointment.getId()}}"> X </a></td>
+        <td style="font-size: 20px"><a style="color: lightseagreen" th:href="@{'/edit?id='+${appointment.getId()}}"> edit </a></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
 </table>
 </body>

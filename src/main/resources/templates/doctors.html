@@ -1,27 +1,60 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    body {
+        background-image: url('/images/spikes.webp');
+        background-size: 300px;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Doctors</title>
 </head>
+<style>
+</style>
 <body>
-<h3><a th:href="@{/appointments}" th:text="'All appointments'"></a> </h3>
-<h3><a th:href="@{/unpaired-appointments}" th:text="'Unpaired appointments'"></a> </h3>
-<h3><a th:href="@{/paired-appointments}" th:text="'Paired appointments'"></a> </h3>
-<h3><a th:href="@{/docs}" th:text="'Doctors'"></a> </h3>
-<table>
+<ul>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/appointments}" class="badge badge-info" style="margin-left: 20px; margin-top: 20px " th:text="'All appointments'"></a> </h3>
+    </li>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/unpaired-appointments}" class="badge badge-info" style="margin-left: 20px; margin-top: 20px" th:text="'Unpaired appointments'"></a> </h3>
+    </li>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/paired-appointments}" class="badge badge-info" style="margin-left: 20px; margin-top: 20px" th:text="'Paired appointments'"></a> </h3>
+    </li>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/docs}" class="badge badge-danger" style="margin-left: 20px; margin-top: 20px" th:text="'Doctors'"></a> </h3>
+    </li>
+</ul>
+<br>
+<br>
+<br>
+<table class="table table-striped">
     <tr>
         <th>
-        <td th:text="'Doctor ID'">
-        <td th:text="'Name'">
+        <td></td>
+        <td></td>
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-danger" th:text="'Doctor ID'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-danger" th:text="'Name'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-danger" th:text="'Delete'">
+        <td style="font-size: 22px; font-weight: bold; color: white" class="bg-danger" th:text="'Edit'">
+        <td></td>
+        <td></td>
         </th>
     </tr>
 
     <tr th:each="doctor : ${doctors}">
         <td></td>
-        <td><a th:href="@{'/doc?id='+${doctor.getId()}}" th:text="${doctor.getId()}">
-        <td><a th:href="@{'/doc?id='+${doctor.getId()}}" th:text="${doctor.name}"></a></td>
-        <td><a th:href="@{'/delete-doc?id='+${doctor.getId()}}" th:text="'X'"></a></td>
+        <td></td>
+        <td></td>
+        <td style="font-size: 20px; font-weight: bold"><a style="color: crimson" th:href="@{'/doc?id='+${doctor.getId()}}" th:text="${doctor.getId()}">
+        <td style="font-size: 20px"><a style="color: #333333" th:href="@{'/doc?id='+${doctor.getId()}}" th:text="${doctor.name}"></a></td>
+        <td style="font-size: 20px"><a style="color: crimson" th:href="@{'/delete-doc?id='+${doctor.getId()}}" th:text="'X'"></a></td>
+        <td style="font-size: 20px"><a style="color: #fa4251" th:href="@{'/doc?id='+${doctor.getId()}}" th:text="'edit'"></a></td>
+        <td></td>
+        <td></td>
     </tr>
 </table>
 </body>

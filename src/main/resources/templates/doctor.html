@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    body {
+        background-image: url('/images/spikes.webp');
+        background-size: 300px;
+    }
+</style>
+<style>
+    body {
+        background-image: url('/images/spikes.webp');
+        background-size: 300px;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title th:text="${doc.name}"></title>
 </head>
 <body>
-<h3><a th:href="@{/appointments}" th:text="'All appointments'"></a> </h3>
-<h3><a th:href="@{/unpaired-appointments}" th:text="'Unpaired appointments'"></a> </h3>
-<h3><a th:href="@{/paired-appointments}" th:text="'Paired appointments'"></a> </h3>
-<h3><a th:href="@{/docs}" th:text="'Doctors'"></a> </h3>
+<ul>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/appointments}" class="badge badge-info" style="margin-left: 20px; margin-top: 20px " th:text="'All appointments'"></a> </h3>
+    </li>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/unpaired-appointments}" class="badge badge-info" style="margin-left: 20px; margin-top: 20px" th:text="'Unpaired appointments'"></a> </h3>
+    </li>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/paired-appointments}" class="badge badge-info" style="margin-left: 20px; margin-top: 20px" th:text="'Paired appointments'"></a> </h3>
+    </li>
+    <li style="display:inline-block;">
+        <h3><a th:href="@{/docs}" class="badge badge-danger" style="margin-left: 20px; margin-top: 20px" th:text="'Doctors'"></a> </h3>
+    </li>
+</ul>
 <h3>Id</h3>
 <h4 th:text="${doc.id}"></h4>
 <h3>Specialties</h3>
