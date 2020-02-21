@@ -1,6 +1,7 @@
 package com.springles.tickets.controllers;
 
 import com.springles.tickets.models.Appointment;
+import com.springles.tickets.models.MedicalSpecialty;
 import com.springles.tickets.services.AppointmentService;
 import com.springles.tickets.services.DoctorService;
 import com.springles.tickets.services.MedicalSpecialtyService;
@@ -136,5 +137,40 @@ public class AdminController {
       appointmentService.save(appointment);
       return "redirect:/appointments";
     }
+  }
+
+  @GetMapping("/docs")
+  public String listAllDoctors(Model model){
+    model.addAttribute("doctors", doctorService.findAll());
+    return "doctors";
+  }
+
+  @GetMapping("/doc")
+  public String docDetails(@RequestParam(value = "id", required = false) Long id, Model model){
+    if (id == null){
+      return "redirect:/docs";
+    }else{
+      model.addAttribute("doc", doctorService.findById(id));
+      return "doctor";
+    }
+  }
+
+  @GetMapping("/specialty")
+  public String addSpecialty(@RequestParam("id") Long id, @ModelAttribute ("specialty")MedicalSpecialty specialty, Model model){
+    model.addAttribute("doc", doctorService.findById(id));
+    return "addSpecialty";
+  }
+
+  @PostMapping("/specialty")
+  public String addSpecialty(@ModelAttribute ("specialty") MedicalSpecialty specialty, @RequestParam("id") Long id){
+    specialty.setDoctor(doctorService.findById(id));
+    doctorService.findById(id).addSpecialty(medicalSpecialtyService.save(specialty));
+    return "redirect:/doc?id=" + id;
+  }
+
+  @GetMapping("/delete-doc")
+  public String deleteDoc(@RequestParam("id") Long id){
+    doctorService.deleteDoctor(id);
+    return "redirect:/docs";
   }
 }
