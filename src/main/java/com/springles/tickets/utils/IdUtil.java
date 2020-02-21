@@ -28,7 +28,9 @@ public class IdUtil {
   }
 
   public List<MedicalSpecialty> createActualSpecialties() {
-    String[] specialtiesToList = new String[]{"fogorvos", "sebész", "urológus", "fazekas", "pszichiáter"};
+    String[] specialtiesToList = new String[]{
+        "fogorvos", "sebész", "urológus", "fazekas", "pszichiáter"
+    };
     List<MedicalSpecialty> result = new ArrayList<>();
     for (String s : specialtiesToList) {
       result.add(new MedicalSpecialty(s));

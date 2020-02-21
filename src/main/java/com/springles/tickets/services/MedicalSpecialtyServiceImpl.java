@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class MedicalSpecialtyServiceImpl implements MedicalSpecialtyService {
+
   private MedicalSpecialtyRepository medicalSpecialtyRepository;
 
   @Autowired
@@ -18,9 +19,9 @@ public class MedicalSpecialtyServiceImpl implements MedicalSpecialtyService {
   }
 
   @Override
-  public List<MedicalSpecialty> findall(){
+  public List<MedicalSpecialty> findall() {
     List<MedicalSpecialty> specialties = new ArrayList<>();
-    for (MedicalSpecialty medicalSpecialty : medicalSpecialtyRepository.findAll()){
+    for (MedicalSpecialty medicalSpecialty : medicalSpecialtyRepository.findAll()) {
       specialties.add(medicalSpecialty);
     }
     return specialties;
