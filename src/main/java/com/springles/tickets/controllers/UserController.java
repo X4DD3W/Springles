@@ -31,7 +31,7 @@ public class UserController {
   public String signUp(@ModelAttribute(value = "new_user") ApplicationUser newUser) {
     newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
     applicationUserRepository.save(newUser);
-    return "redirect:/register/welcome";
+    return "redirect:/welcome";
   }
 
   @GetMapping("/welcome")

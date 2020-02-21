@@ -31,14 +31,18 @@ public class AppointmentController {
   }
 
   @PostMapping("/new-appointment")
-  public String saveAppointment(@ModelAttribute Appointment appointment) {
+  public String saveAppointment(@ModelAttribute Appointment appointment,Model model) {
     // kiszedem az összes fogorvost
     // megnézem a ticketjeiket, és ha mindnek van olyan ticketje, akkor rácseszett és
     // visszairányítom az indexre, hogy fusson neki mégegyszer
 
     if (appointmentService.isThisAppointmentAvailable(appointment)) {
       appointmentService.save(appointment);
-      return "redirect:/success";
+      String message1 = "Dear "+appointment.getPatientName()+" your appointment was successfully scheduled.";
+      String message2 = "Our "+appointment.getSpecialist()+" will see you on the following date: "+appointment.getDate();
+      model.addAttribute("message1", message1);
+      model.addAttribute("message2", message2);
+      return "appointmentSuccessfullyScheduled";
     } else {
       return "redirect:/new-appointment";
     }
