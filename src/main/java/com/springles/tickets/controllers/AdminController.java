@@ -108,7 +108,7 @@ public class AdminController {
 
   @GetMapping("/edit")
   public String editAppointment(@RequestParam("id") Long id, @ModelAttribute("appointment") Appointment appointment, Model model){
-    appointment = appointmentService.findById(id);
+    model.addAttribute("original", appointmentService.findById(id));
     model.addAttribute("doctors", doctorService.findAll());
     model.addAttribute("specialties", medicalSpecialtyService.findall());
     return "editAppointment";

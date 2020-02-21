@@ -1,6 +1,5 @@
 package com.springles.tickets.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -33,7 +32,7 @@ public class Appointment {
   }
 
   public Appointment(String patientName, String phoneNumber, String email, String specialist,
-      String description, String date, Date dateOfSubmission) {
+                     String description, String date) {
     this.patientName = patientName;
     this.phoneNumber = phoneNumber;
     this.email = email;

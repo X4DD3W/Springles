@@ -33,33 +33,32 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Make an Appointment</h2>
-                    <form method="POST">
+                    <form th:action="@{/index}" th:method="post" th:object="${newAppointment}">
 
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Name" name="name">
+                            <input th:field="*{patientName}" required class="input--style-2" type="text" placeholder="Name" name="name">
                         </div>
 
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Phone Number" name="phoneNumber">
+                            <input th:field="*{phoneNumber}" required class="input--style-2" type="text" placeholder="Phone Number" name="phoneNumber">
                         </div>
 
                         <div class="input-group">
-                            <input class="input--style-2" type="email" placeholder="Email" name="email">
+                            <input th:field="*{email}" required class="input--style-2" type="email" placeholder="Email" name="email">
                         </div>
 
                         <div class="input-group">
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="class">
-                                    <option disabled="disabled" selected="selected">Specialities</option>
-                                    <option>1, majd Thymeleafből...</option>
-                                    <option>2dasdadadsa</option>
+                                <select th:field="*{specialist}" required name="class">
+                                    <!--<option disabled="disabled" selected="selected">Specialities</option>-->
+                                    <option th:each="specialist : ${specialties}" th:text="${specialist.getNameOfSpecialty()}" th:value="${specialist.getNameOfSpecialty()}"></option>
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
                         </div>
 
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Description" name="description">
+                            <input th:field="*{description}" required class="input--style-2" type="text" placeholder="Description" name="description">
                         </div>
 
                         <!--<div class="col-2">
@@ -71,7 +70,7 @@
 
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <input type="datetime-local" class="form-control" name="time" id="time" placeholder="Time">
+                                <input th:field="*{date}" required type="datetime-local" class="form-control" name="time" id="time" placeholder="Time">
                             </div>
                         </div>
 
