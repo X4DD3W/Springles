@@ -12,8 +12,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import static com.springles.tickets.security.SecurityConstants.SIGN_UP_URL;
-
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
@@ -29,7 +27,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable().authorizeRequests()
-        .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+        .antMatchers(HttpMethod.GET, "/register/").permitAll()
+        .antMatchers(HttpMethod.POST, "/register/").permitAll()
+        .antMatchers(HttpMethod.POST, "/users/sign-up").permitAll()
+        .antMatchers(HttpMethod.GET, "/new-appointment").permitAll()
+        .antMatchers(HttpMethod.POST, "/new-appointment").permitAll()
         .anyRequest().authenticated()
         .and()
         .httpBasic()
@@ -41,10 +43,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   }
 
   @Override
-  public void configure(org.springframework.security.config.annotation.web.builders.WebSecurity web) throws Exception {
+  public void configure(org.springframework.security.config.annotation.web.builders.WebSecurity web)
+      throws Exception {
     web
         .ignoring()
-        .antMatchers("/resources/**", "/static/**","/webjars/**");
+        .antMatchers("/resources/**", "/static/**", "/webjars/**");
   }
 
   @Override

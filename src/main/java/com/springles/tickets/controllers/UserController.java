@@ -1,7 +1,6 @@
 package com.springles.tickets.controllers;
 
 import com.springles.tickets.models.ApplicationUser;
-import com.springles.tickets.models.Doctor;
 import com.springles.tickets.repositories.ApplicationUserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,14 +15,14 @@ public class UserController {
   private BCryptPasswordEncoder bCryptPasswordEncoder;
 
   public UserController(ApplicationUserRepository applicationUserRepository,
-                        BCryptPasswordEncoder bCryptPasswordEncoder) {
+      BCryptPasswordEncoder bCryptPasswordEncoder) {
     this.applicationUserRepository = applicationUserRepository;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
 
   @GetMapping("/")
   public String showRegistrationForm(@ModelAttribute(value = "new_user") ApplicationUser newUser,
-                                     Model model){
+      Model model) {
     model.addAttribute("new_user", newUser);
     return "new_user_form";
   }
@@ -32,6 +31,12 @@ public class UserController {
   public String signUp(@ModelAttribute(value = "new_user") ApplicationUser newUser) {
     newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
     applicationUserRepository.save(newUser);
-    return "redirect:/welcome";
+    return "redirect:/register/welcome";
   }
+
+  @GetMapping("/welcome")
+  public String welcomePageTest() {
+    return "welcome";
+  }
+
 }
