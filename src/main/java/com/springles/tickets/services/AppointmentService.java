@@ -1,6 +1,7 @@
 package com.springles.tickets.services;
 
 import com.springles.tickets.models.Appointment;
+import com.springles.tickets.models.Doctor;
 
 import java.util.List;
 
@@ -23,4 +24,5 @@ public interface AppointmentService {
 
   void deleteAppointment(Long id);
   Appointment findById(Long id);
+  Boolean isDoctorHasTheSpecialty(String specialty, Doctor doctor);
 }

@@ -107,16 +107,25 @@ public class AdminController {
   }
 
   @GetMapping("/edit")
-  public String editAppointment(@RequestParam("id") Long id, @ModelAttribute("appointment") Appointment appointment, Model model){
+  public String editAppointment(@RequestParam("id") Long id,@RequestParam(value = "error", required = false) String error, @ModelAttribute("appointment") Appointment appointment, Model model){
     model.addAttribute("original", appointmentService.findById(id));
     model.addAttribute("doctors", doctorService.findAll());
     model.addAttribute("specialties", medicalSpecialtyService.findall());
+    if (error!= null && error.equals("true")){
+      model.addAttribute("error", error);
+    }else{
+      model.addAttribute("error", "false");
+    }
     return "editAppointment";
   }
 
   @PostMapping("/edit")
-  public String editAppointment(@ModelAttribute("appointment") Appointment appointment, @RequestParam("id") Long id){
-    appointmentService.save(appointment);
-    return "redirect:/appointments";
+  public String editAppointment(@ModelAttribute("appointment") Appointment appointment, @RequestParam("id") Long id, Model model){
+    if (!appointmentService.isDoctorHasTheSpecialty(appointment.getSpecialist(), appointment.getDoctor())){
+      return "redirect:/edit?id=" + appointment.getId() + "&error=true";
+    }else {
+      appointmentService.save(appointment);
+      return "redirect:/appointments";
+    }
   }
 }

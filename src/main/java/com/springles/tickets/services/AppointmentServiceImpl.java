@@ -1,6 +1,8 @@
 package com.springles.tickets.services;
 
 import com.springles.tickets.models.Appointment;
+import com.springles.tickets.models.Doctor;
+import com.springles.tickets.models.MedicalSpecialty;
 import com.springles.tickets.repositories.AppointmentRepository;
 import java.util.ArrayList;
 import java.util.Date;
@@ -99,5 +101,16 @@ public class AppointmentServiceImpl implements AppointmentService {
   @Override
   public Appointment findById(Long id){
     return appointmentRepository.findById(id).orElse(null);
+  }
+
+  @Override
+  public Boolean isDoctorHasTheSpecialty(String specialty, Doctor doctor){
+    Boolean hasSpecialty = false;
+    for (MedicalSpecialty specialtyOfDoc : doctor.getListOfMedicalSpecialties()){
+      if (specialtyOfDoc.getNameOfSpecialty().equals(specialty)){
+        hasSpecialty = true;
+      }
+    }
+    return hasSpecialty;
   }
 }

@@ -5,10 +5,11 @@
     <title>Edit appointment</title>
 </head>
 <body>
-<form th:action="@{'/edit?id='+${appointment.getId()}}" th:method="post" th:object="${original}">
+<h2 th:if="${error} == 'true'" th:text="'The choosen doctor does not have the choosen specialty!'" style="color:red"></h2>
+<form th:action="@{'/edit?id='+${original.getId()}}" th:method="post" th:object="${original}">
     <input type="text" th:field="*{id}" required readonly>
     <input type="text" th:field="*{patientName}" required oninvalid="this.setCustomValidity('Please add a name')">
-    <input type="text" th:field="*{phoneNumber}" required oninvalid="this.setCustomValidity('Please add the phone number')">
+    <input type="number" th:field="*{phoneNumber}" required oninvalid="this.setCustomValidity('Please add the phone number')">
     <input type="email" th:field="*{email}" required oninvalid="this.setCustomValidity('Please add the e-mail address')">
     <input type="text" th:field="*{date}" required oninvalid="this.setCustomValidity('Please add the examination date')">
     <select th:field="*{specialist}" required name="class">
