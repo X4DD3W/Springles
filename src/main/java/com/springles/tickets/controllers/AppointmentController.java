@@ -27,7 +27,7 @@ public class AppointmentController {
       Model model) {
     List<MedicalSpecialty> specialties = new IdUtil().createActualSpecialties();
     model.addAttribute("specialties", specialties);
-    return "index";
+    return "newAppointmentForm";
   }
 
   @PostMapping("/new-appointment")

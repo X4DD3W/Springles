@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule An Appointment</title>
+</head>
+<body>
+<form th:action="@{/new-appointment}"
+      th:method="post"
+      th:object="${newAppointment}">
+
+    <label>User Name</label>
+    <input
+            type="text"
+            th:field="*{patientName}"
+            placeholder="Name"
+            name="name"
+            required
+    />
+    <label>Phone Number</label>
+    <input
+            type="text"
+            th:field="*{phoneNumber}"
+            placeholder="Phone Number"
+            name="phoneNumber"
+            required
+    />
+
+    <label>Email</label>
+    <input
+            type="text"
+            th:field="*{email}"
+            placeholder="Email"
+            name="email"
+            required
+    />
+    <label for="nameList">Specialist</label>
+
+    <select id="nameList"
+            name="name"
+            th:field="*{specialist}">
+        <option th:each="specialist : ${specialties}"
+                th:text="${specialist.getNameOfSpecialty()}"
+                th:value="${specialist.getNameOfSpecialty()}"
+        ></option>
+    </select>
+
+    <label>Medical reason for scheduling an appointment</label>
+    <input
+            type="text"
+            th:field="*{description}"
+            required
+    />
+    <label>Date</label>
+    <input
+            type="datetime-local"
+            th:field="*{date}"
+            placeholder="Date"
+            required
+    />
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>
