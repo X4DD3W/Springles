@@ -29,11 +29,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
   @Override
   public List<Appointment> listAll() {
-    List<Appointment> appointments = new ArrayList<>();
-    for (Appointment appointment : appointmentRepository.findAll()) {
-      appointments.add(appointment);
-    }
-    return appointments;
+    return new ArrayList<>(appointmentRepository.findAll());
   }
 
   @Override
@@ -107,8 +103,8 @@ public class AppointmentServiceImpl implements AppointmentService {
   }
 
   @Override
-  public Boolean isDoctorHasTheSpecialty(String specialty, Doctor doctor) {
-    Boolean hasSpecialty = false;
+  public boolean isDoctorHasTheSpecialty(String specialty, Doctor doctor) {
+    boolean hasSpecialty = false;
     for (MedicalSpecialty specialtyOfDoc : doctor.getListOfMedicalSpecialties()) {
       if (specialtyOfDoc.getNameOfSpecialty().equals(specialty)) {
         hasSpecialty = true;

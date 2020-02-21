@@ -35,7 +35,7 @@ public class UserController {
   }
 
   @GetMapping("/welcome")
-  public String welcomePageTest() {
+  public String welcomePage() {
     return "welcome";
   }
 

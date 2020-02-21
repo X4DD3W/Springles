@@ -3,7 +3,6 @@ package com.springles.tickets.services;
 import com.springles.tickets.repositories.DoctorRepository;
 import com.springles.tickets.models.Appointment;
 import com.springles.tickets.models.Doctor;
-import com.springles.tickets.repositories.AppointmentRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +11,9 @@ import org.springframework.stereotype.Service;
 public class DoctorServiceImpl implements DoctorService {
 
   private DoctorRepository doctorRepository;
-  private AppointmentRepository appointmentrepository;
 
   @Autowired
-  public DoctorServiceImpl(DoctorRepository doctorRepository,
-      AppointmentRepository appointmentRepository) {
+  public DoctorServiceImpl(DoctorRepository doctorRepository) {
     this.doctorRepository = doctorRepository;
   }
 
