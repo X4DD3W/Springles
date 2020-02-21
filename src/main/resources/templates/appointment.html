@@ -5,6 +5,10 @@
     <title>Add new Appointment</title>
 </head>
 <body>
+<h3><a th:href="@{/appointments}" th:text="'All appointments'"></a> </h3>
+<h3><a th:href="@{/unpaired-appointments}" th:text="'Unpaired appointments'"></a> </h3>
+<h3><a th:href="@{/paired-appointments}" th:text="'Paired appointments'"></a> </h3>
+<h3><a th:href="@{/docs}" th:text="'Doctors'"></a> </h3>
 
 <h2 th:if="${link == '/paired-appointments'}" th:text="'Paired Appointments'"></h2>
 <h2 th:if="${link == '/unpaired-appointments'}" th:text="'Unpaired Appointments'"></h2>

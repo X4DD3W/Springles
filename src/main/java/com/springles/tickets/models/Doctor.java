@@ -80,4 +80,8 @@ public class Doctor {
   public void setListOfMedicalSpecialties(List<MedicalSpecialty> listOfMedicalSpecialties) {
     this.listOfMedicalSpecialties = listOfMedicalSpecialties;
   }
+
+  public void addSpecialty(MedicalSpecialty specialty){
+    this.listOfMedicalSpecialties.add(specialty);
+  }
 }
