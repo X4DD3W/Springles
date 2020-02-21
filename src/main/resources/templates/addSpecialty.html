@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <style>
-    body {
-        background-image: url('/images/spikes.webp');
-        background-size: 300px;
-    }
+  body {
+    background-image: url('/images/spikes.webp');
+    background-size: 300px;
+  }
 </style>
 <head>
-    <meta charset="UTF-8">
-    <title th:text="'Add new specialty to ' + ${doc.getId()}"></title>
+  <meta charset="UTF-8">
+  <title th:text="'Add new specialty to ' + ${doc.getId()}"></title>
 </head>
 <body>
 <form th:action="@{'/specialty?id='+${doc.getId()}}" th:method="post" th:object="${specialty}">
-    <input type="text" th:field="*{nameOfSpecialty}" required oninvalid="this.setCustomValidity('Please add a name')">
-    <button type="submit">save specialty</button>
+  <input type="text" th:field="*{nameOfSpecialty}" required
+         oninvalid="this.setCustomValidity('Please add a name')">
+  <button type="submit">save specialty</button>
 </form>
 </body>
 </html>

@@ -36,6 +36,6 @@
 <h4 th:text="${doc.id}"></h4>
 <h3>Specialties</h3>
 <h4 th:each="specialty : ${doc.getListOfMedicalSpecialties()}" th:text="${specialty.nameOfSpecialty}"></h4>
-<a th:href="@{'/specialty?id='+${doc.getId()}}" th:text="'edit'">
+<a th:href="@{'/specialty?id='+${doc.getId()}}" th:text="'edit'"></a>
 </body>
 </html>
