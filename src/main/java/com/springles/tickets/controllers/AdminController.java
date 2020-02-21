@@ -22,7 +22,7 @@ public class AdminController {
 
   @Autowired
   public AdminController(AppointmentService appointmentService, DoctorService doctorService,
-      MedicalSpecialtyService medicalSpecialtyService) {
+                         MedicalSpecialtyService medicalSpecialtyService) {
     this.appointmentService = appointmentService;
     this.doctorService = doctorService;
     this.medicalSpecialtyService = medicalSpecialtyService;
@@ -30,8 +30,8 @@ public class AdminController {
 
   @GetMapping("/appointments")
   public String listAllAppointments(Model model,
-      @RequestParam(value = "name", required = false) String name,
-      @RequestParam(value = "specialist", required = false) String specialty) {
+                                    @RequestParam(value = "name", required = false) String name,
+                                    @RequestParam(value = "specialist", required = false) String specialty) {
     List<Appointment> appointments = appointmentService.listAll();
     List<Appointment> filteredAppointments;
     model.addAttribute("doctors", doctorService.findAll());
@@ -54,20 +54,14 @@ public class AdminController {
 
   @GetMapping("/unpaired-appointments")
   public String listOfUnpairedAppointments(Model model,
-      @RequestParam(value = "name", required = false) String name,
-      @RequestParam(value = "specialist", required = false) String specialty) {
+                                           @RequestParam(value = "specialist", required = false) String specialty) {
     List<Appointment> appointments = appointmentService.listUnpairedAppointments();
     List<Appointment> filteredAppointments;
     model.addAttribute("doctors", doctorService.findAll());
     model.addAttribute("specialties", medicalSpecialtyService.findall());
     model.addAttribute("link", "/unpaired-appointments");
-    if ((name != null && name.equals("all")) || (specialty != null && specialty.equals("all"))) {
+    if ((specialty != null && specialty.equals("all"))) {
       filteredAppointments = appointments;
-    } else if (name != null && specialty != null) {
-      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(
-          appointmentService.filteredAppointmentsByName(appointments, name), specialty);
-    } else if (name != null) {
-      filteredAppointments = appointmentService.filteredAppointmentsByName(appointments, name);
     } else if (specialty != null) {
       filteredAppointments = appointmentService
           .filteredAppointmentsBySpecialty(appointments, specialty);
@@ -80,8 +74,8 @@ public class AdminController {
 
   @GetMapping("/paired-appointments")
   public String listOfPairedAppointments(Model model,
-      @RequestParam(value = "name", required = false) String name,
-      @RequestParam(value = "specialist", required = false) String specialty) {
+                                         @RequestParam(value = "name", required = false) String name,
+                                         @RequestParam(value = "specialist", required = false) String specialty) {
     List<Appointment> appointments = appointmentService.listPairedAppointments();
     List<Appointment> filteredAppointments;
     model.addAttribute("doctors", doctorService.findAll());
@@ -109,8 +103,8 @@ public class AdminController {
 
   @GetMapping("/edit")
   public String editAppointment(@RequestParam("id") Long id,
-      @RequestParam(value = "error", required = false) String error,
-      @ModelAttribute("appointment") Appointment appointment, Model model) {
+                                @RequestParam(value = "error", required = false) String error,
+                                @ModelAttribute("appointment") Appointment appointment, Model model) {
     model.addAttribute("original", appointmentService.findById(id));
     model.addAttribute("doctors", doctorService.findAll());
     model.addAttribute("specialties", medicalSpecialtyService.findall());
@@ -124,7 +118,7 @@ public class AdminController {
 
   @PostMapping("/edit")
   public String editAppointment(@ModelAttribute("appointment") Appointment appointment,
-      @RequestParam("id") Long id, Model model) {
+                                @RequestParam("id") Long id, Model model) {
     if (!appointmentService
         .isDoctorHasTheSpecialty(appointment.getSpecialist(), appointment.getDoctor())) {
       return "redirect:/edit?id=" + appointment.getId() + "&error=true";
@@ -135,47 +129,47 @@ public class AdminController {
   }
 
   @GetMapping("/docs")
-  public String listAllDoctors(Model model){
+  public String listAllDoctors(Model model) {
     model.addAttribute("doctors", doctorService.findAll());
     return "doctors";
   }
 
   @GetMapping("/doc")
-  public String docDetails(@RequestParam(value = "id", required = false) Long id, Model model){
-    if (id == null){
+  public String docDetails(@RequestParam(value = "id", required = false) Long id, Model model) {
+    if (id == null) {
       return "redirect:/docs";
-    }else{
+    } else {
       model.addAttribute("doc", doctorService.findById(id));
       return "doctor";
     }
   }
 
   @GetMapping("/specialty")
-  public String addSpecialty(@RequestParam("id") Long id, @ModelAttribute ("specialty")MedicalSpecialty specialty, Model model){
+  public String addSpecialty(@RequestParam("id") Long id, @ModelAttribute("specialty") MedicalSpecialty specialty, Model model) {
     model.addAttribute("doc", doctorService.findById(id));
     return "addSpecialty";
   }
 
   @PostMapping("/specialty")
-  public String addSpecialty(@ModelAttribute ("specialty") MedicalSpecialty specialty, @RequestParam("id") Long id){
+  public String addSpecialty(@ModelAttribute("specialty") MedicalSpecialty specialty, @RequestParam("id") Long id) {
     specialty.setDoctor(doctorService.findById(id));
     doctorService.findById(id).addSpecialty(medicalSpecialtyService.save(specialty));
     return "redirect:/doc?id=" + id;
   }
 
   @GetMapping("/delete-doc")
-  public String deleteDoc(@RequestParam("id") Long id){
+  public String deleteDoc(@RequestParam("id") Long id) {
     doctorService.deleteDoctor(id);
     return "redirect:/docs";
   }
 
   @GetMapping("/saveNewDoctor")
-  public String saveDoctor(@ModelAttribute("doctor")Doctor doctor){
+  public String saveDoctor(@ModelAttribute("doctor") Doctor doctor) {
     return "newDoctor";
   }
 
   @PostMapping("/saveNewDoctor")
-  public String saveDoc(@ModelAttribute("doctor") Doctor doctor){
+  public String saveDoc(@ModelAttribute("doctor") Doctor doctor) {
     doctorService.save(doctor);
     return "redirect:/docs";
   }
