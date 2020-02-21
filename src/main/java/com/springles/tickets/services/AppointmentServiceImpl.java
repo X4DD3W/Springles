@@ -4,8 +4,10 @@ import com.springles.tickets.models.Appointment;
 import com.springles.tickets.models.Doctor;
 import com.springles.tickets.models.MedicalSpecialty;
 import com.springles.tickets.repositories.AppointmentRepository;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,8 +71,10 @@ public class AppointmentServiceImpl implements AppointmentService {
   public List<Appointment> filteredAppointmentsByName(List<Appointment> appointments, String name) {
     List<Appointment> filteredAppointments = new ArrayList<>();
     for (Appointment appointment : appointments) {
-      if (appointment.getDoctor().getName().equals(name)) {
-        filteredAppointments.add(appointment);
+      if (appointment.getDoctor() != null) {
+        if (appointment.getDoctor().getName().equals(name)) {
+          filteredAppointments.add(appointment);
+        }
       }
     }
     return filteredAppointments;
@@ -78,7 +82,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
   @Override
   public List<Appointment> filteredAppointmentsBySpecialty(List<Appointment> appointments,
-      String specialty) {
+                                                           String specialty) {
     List<Appointment> filteredAppointments = new ArrayList<>();
     for (Appointment appointment : appointments) {
       if (appointment.getSpecialist().equals(specialty)) {

@@ -7,14 +7,14 @@
   }
 </style>
 <head>
-  <meta charset="UTF-8">
-  <title th:text="'Add new specialty to ' + ${doc.getId()}"></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title th:text="'Add new specialty to ' + ${doc.getId()}"></title>
 </head>
 <body>
 <form th:action="@{'/specialty?id='+${doc.getId()}}" th:method="post" th:object="${specialty}">
-  <input type="text" th:field="*{nameOfSpecialty}" required
-         oninvalid="this.setCustomValidity('Please add a name')">
-  <button type="submit">save specialty</button>
+    <input style=" font-size: 22px; font-family: Calibri" type="text" th:field="*{nameOfSpecialty}" required oninvalid="this.setCustomValidity('Please add a name')">
+    <button class="btn btn-warning" style="font-size: 20px" type="submit">save specialty</button>
 </form>
 </body>
 </html>

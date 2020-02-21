@@ -1,6 +1,7 @@
 package com.springles.tickets.controllers;
 
 import com.springles.tickets.models.Appointment;
+import com.springles.tickets.models.Doctor;
 import com.springles.tickets.models.MedicalSpecialty;
 import com.springles.tickets.services.AppointmentService;
 import com.springles.tickets.services.DoctorService;
@@ -38,9 +39,6 @@ public class AdminController {
     model.addAttribute("link", "/appointments");
     if ((name != null && name.equals("all")) || (specialty != null && specialty.equals("all"))) {
       filteredAppointments = appointments;
-    } else if (name != null && specialty != null) {
-      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(
-          appointmentService.filteredAppointmentsByName(appointments, name), specialty);
     } else if (name != null) {
       filteredAppointments = appointmentService.filteredAppointmentsByName(appointments, name);
     } else if (specialty != null) {
@@ -91,9 +89,6 @@ public class AdminController {
     model.addAttribute("link", "/paired-appointments");
     if ((name != null && name.equals("all")) || (specialty != null && specialty.equals("all"))) {
       filteredAppointments = appointments;
-    } else if (name != null && specialty != null) {
-      filteredAppointments = appointmentService.filteredAppointmentsBySpecialty(
-          appointmentService.filteredAppointmentsByName(appointments, name), specialty);
     } else if (name != null) {
       filteredAppointments = appointmentService.filteredAppointmentsByName(appointments, name);
     } else if (specialty != null) {
@@ -171,6 +166,17 @@ public class AdminController {
   @GetMapping("/delete-doc")
   public String deleteDoc(@RequestParam("id") Long id){
     doctorService.deleteDoctor(id);
+    return "redirect:/docs";
+  }
+
+  @GetMapping("/saveNewDoctor")
+  public String saveDoctor(@ModelAttribute("doctor")Doctor doctor){
+    return "newDoctor";
+  }
+
+  @PostMapping("/saveNewDoctor")
+  public String saveDoc(@ModelAttribute("doctor") Doctor doctor){
+    doctorService.save(doctor);
     return "redirect:/docs";
   }
 }

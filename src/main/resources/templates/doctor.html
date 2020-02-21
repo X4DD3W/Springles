@@ -32,10 +32,10 @@
         <h3><a th:href="@{/docs}" class="badge badge-danger" style="margin-left: 20px; margin-top: 20px" th:text="'Doctors'"></a> </h3>
     </li>
 </ul>
-<h3>Id</h3>
-<h4 th:text="${doc.id}"></h4>
-<h3>Specialties</h3>
-<h4 th:each="specialty : ${doc.getListOfMedicalSpecialties()}" th:text="${specialty.nameOfSpecialty}"></h4>
-<a th:href="@{'/specialty?id='+${doc.getId()}}" th:text="'edit'"></a>
+<h5 style="font-weight: bold; margin-left: 20px">Id</h5>
+<h5 style="margin-left: 20px" th:text="${doc.id}"></h5>
+<h5 style="font-weight: bold; margin-left: 20px">Specialties</h5>
+<h5 style="margin-left: 20px" th:each="specialty : ${doc.getListOfMedicalSpecialties()}" th:text="${specialty.nameOfSpecialty}"></h5>
+<a th:href="@{'/specialty?id='+${doc.getId()}}" class="badge badge-warning" style="font-size: 20px; margin-left: 20px" th:text="'add new specialty'">
 </body>
 </html>
