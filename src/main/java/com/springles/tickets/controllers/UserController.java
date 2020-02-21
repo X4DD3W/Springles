@@ -38,4 +38,5 @@ public class UserController {
   public String welcomePageTest() {
     return "welcome";
   }
+
 }

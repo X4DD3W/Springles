@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${doc.name}"></title>
+</head>
+<body>
+<h3><a th:href="@{/appointments}" th:text="'All appointments'"></a> </h3>
+<h3><a th:href="@{/unpaired-appointments}" th:text="'Unpaired appointments'"></a> </h3>
+<h3><a th:href="@{/paired-appointments}" th:text="'Paired appointments'"></a> </h3>
+<h3><a th:href="@{/docs}" th:text="'Doctors'"></a> </h3>
+<h3>Id</h3>
+<h4 th:text="${doc.id}"></h4>
+<h3>Specialties</h3>
+<h4 th:each="specialty : ${doc.getListOfMedicalSpecialties()}" th:text="${specialty.nameOfSpecialty}"></h4>
+<a th:href="@{'/specialty?id='+${doc.getId()}}" th:text="'edit'">
+</body>
+</html>

@@ -26,4 +26,9 @@ public class MedicalSpecialtyServiceImpl implements MedicalSpecialtyService {
     }
     return specialties;
   }
+
+  @Override
+  public MedicalSpecialty save(MedicalSpecialty medicalSpecialty) {
+    return medicalSpecialtyRepository.save(medicalSpecialty);
+  }
 }

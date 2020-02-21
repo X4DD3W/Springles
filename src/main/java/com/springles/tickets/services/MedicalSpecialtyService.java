@@ -7,4 +7,6 @@ import java.util.List;
 public interface MedicalSpecialtyService {
 
   List<MedicalSpecialty> findall();
+
+  MedicalSpecialty save(MedicalSpecialty medicalSpecialty);
 }
