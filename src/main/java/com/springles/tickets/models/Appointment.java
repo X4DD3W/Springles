@@ -25,8 +25,7 @@ public class Appointment {
 
   private String date;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date dateOfSubmission;
+  private String dateOfSubmission;
 
   public Appointment() {
   }
