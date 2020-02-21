@@ -25,13 +25,14 @@ public class Appointment {
 
   private String date;
 
-  private String dateOfSubmission;
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date dateOfSubmission;
 
   public Appointment() {
   }
 
   public Appointment(String patientName, String phoneNumber, String email, String specialist,
-                     String description, String date) {
+      String description, String date) {
     this.patientName = patientName;
     this.phoneNumber = phoneNumber;
     this.email = email;
