@@ -42,7 +42,6 @@
         <td th:text="'Date of examination'">
         <td th:text="'Specialist'">
         <td th:text="'Description'">
-        <td th:text="'Date of reservation'">
         <td th:text="'Doctor'">
         <td th:text="'Delete'">
         </th>
@@ -57,7 +56,6 @@
         <td th:text="${appointment.getDate()}">
         <td th:text="${appointment.getSpecialist()}">
         <td th:text="${appointment.getDescription()}">
-        <td th:text="${appointment.getDateOfSubmission()}">
         <td th:if="${appointment.getDoctor() != null}" th:text="${appointment.getDoctor().getName()}">
         <td th:if="${appointment.getDoctor() == null}" th:text="'no doctor yet'">
         <td><a th:href="@{'/delete?id='+${appointment.getId()}}"> X </a></td>

@@ -25,9 +25,6 @@ public class Appointment {
 
   private String date;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date dateOfSubmission;
-
   public Appointment() {
   }
 
@@ -39,7 +36,6 @@ public class Appointment {
     this.specialist = specialist;
     this.description = description;
     this.date = date;
-    this.dateOfSubmission = new Date();
   }
 
   public Long getId() {
@@ -92,14 +88,6 @@ public class Appointment {
 
   public void setDate(String date) {
     this.date = date;
-  }
-
-  public Date getDateOfSubmission() {
-    return dateOfSubmission;
-  }
-
-  public void setDateOfSubmission(Date dateOfSubmission) {
-    this.dateOfSubmission = dateOfSubmission;
   }
 
   public Doctor getDoctor() {

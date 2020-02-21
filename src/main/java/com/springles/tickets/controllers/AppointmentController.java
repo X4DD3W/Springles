@@ -33,8 +33,7 @@ public class AppointmentController {
 
   @PostMapping("/new-appointment")
   public String saveAppointment(@ModelAttribute Appointment appointment) throws ParseException {
-    appointment.setDateOfSubmission(new Date());
-/*
+ /*
     appointment.setDate(new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").format(appointment.getDate()));
 */
     // kiszedem az összes fogorvost
@@ -45,7 +44,7 @@ public class AppointmentController {
       appointmentService.save(appointment);
       return "redirect:/success";
     } else {
-      return "redirect:/index";
+      return "redirect:/new-appointment";
     }
   }
   @GetMapping("/success")
