@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2 th:if="${link == '/paired-appointments'}" th:text="'Paired Appointments'"></h2>
+<h2 th:if="${link == '/unpaired-appointments'}" th:text="'Unpaired Appointments'"></h2>
+<h2 th:if="${link == '/appointments'}" th:text="'All Appointments'"></h2>
+
+<div th:if="${link == '/paired-appointments'}">
+    <label>Search by name</label>
+    <form th:action="@{(${link})}" th:method="get">
+        <select name="name">
+            <option th:text="'*all*'" th:value="'all'"></option>
+            <option th:each="doctor : ${doctors}" th:text="${doctor.name}" th:value="${doctor.getName()}"></option>
+        </select>
+        <button type="submit">submit</button>
+    </form>
+</div>
+<div>
+    <label>Search by specialty</label>
+    <form th:action="@{(${link})}" th:method="get">
+        <select name="specialist">
+            <option th:text="'*all*'" th:value="'all'"></option>
+            <option th:each="specialty : ${specialties}" th:text="${specialty.getNameOfSpecialty()}"
+                    th:value="${specialty.getNameOfSpecialty()}"></option>
+        </select>
+        <button type="submit">submit</button>
+    </form>
+</div>
+
+<table>
+    <tr>
+        <th>
+        <td th:text="'Appointment ID'">
+        <td th:text="'Patient name'">
+        <td th:text="'Phone number'">
+        <td th:text="'E-mail adress'">
+        <td th:text="'Date of examination'">
+        <td th:text="'Specialist'">
+        <td th:text="'Description'">
+        <td th:text="'Date of reservation'">
+        <td th:text="'Doctor'">
+        <td th:text="'Delete'">
+        </th>
+    </tr>
+
+    <tr th:each="appointment : ${appointments}" th:style="${appointment.date} ? 'color:red' : 'color:black'">
+        <td></td>
+        <td th:text="${appointment.getId()}">
+        <td th:text="${appointment.getPatientName()}">
+        <td th:text="${appointment.getPhoneNumber()}">
+        <td th:text="${appointment.getEmail()}">
+        <td th:text="${appointment.getDate()}">
+        <td th:text="${appointment.getSpecialist()}">
+        <td th:text="${appointment.getDescription()}">
+        <td th:text="${appointment.getDateOfSubmission()}">
+        <td th:if="${appointment.getDoctor() != null}" th:text="${appointment.getDoctor().getName()}">
+        <td th:if="${appointment.getDoctor() == null}" th:text="'no doctor yet'">
+        <td><a th:href="@{'/delete?id='+${appointment.getId()}}"> X </a></td>
+    </tr>
+</table>
+</body>
+</html>
