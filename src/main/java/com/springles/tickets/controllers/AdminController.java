@@ -1,6 +1,7 @@
 package com.springles.tickets.controllers;
 
 import com.springles.tickets.models.Appointment;
+import com.springles.tickets.models.Doctor;
 import com.springles.tickets.models.MedicalSpecialty;
 import com.springles.tickets.services.AppointmentService;
 import com.springles.tickets.services.DoctorService;
@@ -171,6 +172,17 @@ public class AdminController {
   @GetMapping("/delete-doc")
   public String deleteDoc(@RequestParam("id") Long id){
     doctorService.deleteDoctor(id);
+    return "redirect:/docs";
+  }
+
+  @GetMapping("/saveNewDoctor")
+  public String saveDoctor(@ModelAttribute("doctor")Doctor doctor){
+    return "newDoctor";
+  }
+
+  @PostMapping("/saveNewDoctor")
+  public String saveDoc(@ModelAttribute("doctor") Doctor doctor){
+    doctorService.save(doctor);
     return "redirect:/docs";
   }
 }
