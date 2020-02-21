@@ -5,7 +5,6 @@ import com.springles.tickets.models.MedicalSpecialty;
 import com.springles.tickets.services.AppointmentService;
 import com.springles.tickets.utils.IdUtil;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +24,14 @@ public class AppointmentController {
     this.appointmentService = appointmentService;
   }
 
-  @GetMapping("/index")
+  @GetMapping("/new-appointment")
   public String mainPage(@ModelAttribute(name = "newAppointment") Appointment appointment, Model model) {
     List<MedicalSpecialty> specialties = new IdUtil().createActualSpecialties();
     model.addAttribute("specialties", specialties);
     return "index";
   }
 
-  @PostMapping("/index")
+  @PostMapping("/new-appointment")
   public String saveAppointment(@ModelAttribute Appointment appointment) throws ParseException {
     appointment.setDateOfSubmission(new Date());
 /*
